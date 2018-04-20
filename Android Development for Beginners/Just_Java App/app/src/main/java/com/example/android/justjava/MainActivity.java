@@ -1,7 +1,9 @@
 package com.example.android.justjava;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,12 +18,12 @@ public class MainActivity extends AppCompatActivity {
     private String name = "Kareem El-Wakeel";                   // The customer's name
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         // Display the default quantity
-        displayQuantity();
+         displayQuantity();
     }
 
     /**
@@ -35,10 +37,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     // If the quantity is more than zero
      * This method is called when the '-' button is clicked
      */
     public void MinusOne(View view) {
-        // If the quantity is more than zero
         if (quantity > 0)
             // Reduce the quantity by one
             quantity--;
@@ -52,6 +54,17 @@ public class MainActivity extends AppCompatActivity {
     public void submitOrder(View view) {
         // Display the order summary
         displayOrderSummary();
+    }
+
+    public void newView(View view) {
+        TextView textView = new TextView(this);
+        textView.setText("This is a new view! I am a genius for creating this app!");
+        textView.setTextSize(56);
+        textView.setTextColor(Color.BLUE);
+        textView.setMaxLines(2);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+
+        setContentView(textView);
     }
 
     /**
