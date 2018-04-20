@@ -11,13 +11,16 @@ import java.text.NumberFormat;
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
-    private int quantity = 2;
-    private float price = 5.0f;
+    private int quantity = 2;                                   // The order quantity
+    private float price = 5.0f;                                 // The price of one cup of coffee
+    private String name = "Kareem El-Wakeel";                   // The customer's name
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Display the default quantity
         displayQuantity();
     }
 
@@ -47,24 +50,42 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        float totalPrice = quantity * price;
-        String priceMessage = String.format("£%.2f", totalPrice) + "\nThank you!";
-        displayPrice(priceMessage);
+        // Display the order summary
+        displayOrderSummary();
     }
 
     /**
-     * This method displays the given quantity on the screen.
+     * Displays the order quantity on the screen.
      */
     private void displayQuantity() {
+        // Send the order quantity to the display
         TextView quantityTextView = findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + quantity);
+        quantityTextView.setText(String.valueOf(quantity));
     }
 
     /**
-     * This method displays the given text on the screen.
+     * Calculates the price of the order
      */
-    private void displayPrice(String message) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(message);
+    private float calculatePrice() {
+        return quantity * price;
+    }
+
+    /**
+     * Creates the order summary.
+     */
+    private String createOrderSummary() {
+        return "Name: " + name + "\n" +
+                "Quantity: " + quantity + "\n" +
+                "Total: " + String.format("£%.2f", calculatePrice()) + "\n" +
+                "Thank you!";
+    }
+
+    /**
+     * Displays the order summary on the screen.
+     */
+    private void displayOrderSummary() {
+        // Send the order summary to the display
+        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
+        orderSummaryTextView.setText(createOrderSummary());
     }
 }

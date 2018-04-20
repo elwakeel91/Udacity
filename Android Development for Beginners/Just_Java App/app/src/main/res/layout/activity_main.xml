@@ -2,11 +2,12 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.udacity.myapplication.MainActivity">
+    tools:context="com.example.android.justjava.MainActivity">
 
+    <!-- Quantity Title -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,15 +15,16 @@
 
         android:text="quantity"
         android:textAllCaps="true"
-        android:textColor="@android:color/black"
         android:textSize="16sp" />
 
+    <!-- Quantity Text and Buttons -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:orientation="horizontal">
 
+        <!-- Minus Button -->
         <Button
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -32,7 +34,7 @@
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
-
+        <!-- Quantity Text -->
         <TextView
             android:id="@+id/quantity_text_view"
             android:layout_width="match_parent"
@@ -43,6 +45,7 @@
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
+        <!-- Plus Button -->
         <Button
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -55,27 +58,28 @@
 
     </LinearLayout>
 
-
+    <!-- Order Summary Title -->
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
 
-        android:text="price"
+        android:text="Order Summary"
         android:textAllCaps="true"
-        android:textColor="@android:color/black"
         android:textSize="16sp" />
 
+    <!-- Order Summary Text -->
     <TextView
-        android:id="@+id/price_text_view"
+        android:id="@+id/order_summary_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
 
-        android:text="£0.00"
+        android:text=""
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 
+    <!-- Order Button -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
