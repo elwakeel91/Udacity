@@ -124,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
      * Creates the order summary.
      * @return the order summary
      */
-    @NonNull
     private String createOrderSummary() {
         // Get the customer's name
         EditText editText = findViewById(R.id.name);

@@ -2,15 +2,15 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context="com.example.android.justjava.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/activity_padding">
 
         <!-- Customer Name -->
         <EditText
@@ -18,59 +18,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:inputType="textCapWords"
             android:hint="@string/name"
+            android:inputType="textCapWords"
             android:text="" />
 
-        <!-- Toppings Title -->
+        <!-- Toppings Header -->
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-
-            android:text="@string/toppings"
-            android:textAllCaps="true"
-            android:textSize="16sp" />
+            style="@style/HeaderTextStyle"
+            android:text="@string/toppings" />
 
         <!-- Whipped Cream -->
         <CheckBox
             android:id="@+id/whipped_cream"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="24dp"
-            android:paddingLeft="24dp"
-
-            android:text="@string/whipped_cream"
-            android:inputType="textCapWords"/>
+            style="@style/CheckboxStyle"
+            android:text="@string/whipped_cream" />
 
         <!-- Chocolate -->
         <CheckBox
             android:id="@+id/chocolate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="24dp"
-            android:paddingLeft="24dp"
-
+            style="@style/CheckboxStyle"
             android:text="@string/chocolate" />
 
-        <!-- Quantity Title -->
+        <!-- Quantity Header -->
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-
-            android:text="@string/quantity"
-            android:textAllCaps="true"
-            android:textSize="16sp" />
+            style="@style/HeaderTextStyle"
+            android:text="@string/quantity" />
 
         <!-- Quantity Text and Buttons -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="16dp"
-            android:paddingTop="16dp">
+            android:paddingBottom="16dp">
 
             <!-- Minus Button -->
             <Button
@@ -87,8 +66,8 @@
                 android:id="@+id/quantity_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
 
                 android:text="@string/initial_quantity_value"
                 android:textColor="@android:color/black"
@@ -110,13 +89,9 @@
 
         <!-- Order Button -->
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/ButtonStyle"
             android:onClick="submitOrder"
-
-            android:text="@string/order"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:text="@string/order" />
 
     </LinearLayout>
 
