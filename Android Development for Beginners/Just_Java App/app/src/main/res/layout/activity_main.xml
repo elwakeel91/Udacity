@@ -1,23 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
     tools:context="com.example.android.justjava.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Customer Name -->
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:inputType="textCapWords"
+            android:hint="@string/name"
+            android:text="" />
+
+        <!-- Toppings Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+
+            android:text="@string/toppings"
+            android:textAllCaps="true"
+            android:textSize="16sp" />
+
+        <!-- Whipped Cream -->
+        <CheckBox
+            android:id="@+id/whipped_cream"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="24dp"
+            android:paddingLeft="24dp"
+
+            android:text="@string/whipped_cream"
+            android:inputType="textCapWords"/>
+
+        <!-- Chocolate -->
+        <CheckBox
+            android:id="@+id/chocolate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="24dp"
+            android:paddingLeft="24dp"
+
+            android:text="@string/chocolate" />
 
         <!-- Quantity Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginTop="16dp"
 
-            android:text="quantity"
+            android:text="@string/quantity"
             android:textAllCaps="true"
             android:textSize="16sp" />
 
@@ -25,8 +68,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp">
 
             <!-- Minus Button -->
             <Button
@@ -43,9 +87,10 @@
                 android:id="@+id/quantity_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
 
-                android:text="2"
+                android:text="@string/initial_quantity_value"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
 
@@ -54,6 +99,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:onClick="AddOne"
 
                 android:text="+"
@@ -62,48 +108,16 @@
 
         </LinearLayout>
 
-        <!-- Order Summary Title -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-
-            android:text="Order Summary"
-            android:textAllCaps="true"
-            android:textSize="16sp" />
-
-        <!-- Order Summary Text -->
-        <TextView
-            android:id="@+id/order_summary_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-
-            android:text=""
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
-
         <!-- Order Button -->
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
             android:onClick="submitOrder"
 
-            android:text="order"
+            android:text="@string/order"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="8dp"
-
-        android:text="New View"
-        android:onClick="newView"/>
-
-</RelativeLayout>
+</ScrollView>
