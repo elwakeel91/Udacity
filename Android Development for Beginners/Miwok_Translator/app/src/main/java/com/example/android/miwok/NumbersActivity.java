@@ -18,16 +18,16 @@ public class NumbersActivity extends AppCompatActivity {
 
         // Create an ArrayList of {@link Word} objects to store the numbers
         ArrayList<Word> words = new ArrayList<>();
-        words.add(new Word("One", "Litta"));
-        words.add(new Word("Two", "Otiiko"));
-        words.add(new Word("Three", "Tolooskosu"));
-        words.add(new Word("Four", "Oyyisa"));
-        words.add(new Word("Five", "Massokka"));
-        words.add(new Word("Six", "Temmokka"));
-        words.add(new Word("Seven", "Kenekaku"));
-        words.add(new Word("Eight", "Kawinta"));
-        words.add(new Word("Nine", "Wo'e"));
-        words.add(new Word("Ten", "Na'aacha"));
+        words.add(new Word(R.drawable.number_one,"One", "Litta"));
+        words.add(new Word(R.drawable.number_two,"Two", "Otiiko"));
+        words.add(new Word(R.drawable.number_three,"Three", "Tolooskosu"));
+        words.add(new Word(R.drawable.number_four,"Four", "Oyyisa"));
+        words.add(new Word(R.drawable.number_five,"Five", "Massokka"));
+        words.add(new Word(R.drawable.number_six,"Six", "Temmokka"));
+        words.add(new Word(R.drawable.number_seven,"Seven", "Kenekaku"));
+        words.add(new Word(R.drawable.number_eight,"Eight", "Kawinta"));
+        words.add(new Word(R.drawable.number_nine,"Nine", "Wo'e"));
+        words.add(new Word(R.drawable.number_ten,"Ten", "Na'aacha"));
 
         // Create an {@link WordAdapter}, whose data source is a list of {@link Word}s. The
         // adapter knows how to create list items for each item in the list.

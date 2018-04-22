@@ -18,16 +18,16 @@ public class FamilyActivity extends AppCompatActivity {
 
         // Create a list of words
         ArrayList<Word> words = new ArrayList<>();
-        words.add(new Word("father", "әpә"));
-        words.add(new Word("mother", "әṭa"));
-        words.add(new Word("son", "angsi"));
-        words.add(new Word("daughter", "tune"));
-        words.add(new Word("older brother", "taachi"));
-        words.add(new Word("younger brother", "chalitti"));
-        words.add(new Word("older sister", "teṭe"));
-        words.add(new Word("younger sister", "kolliti"));
-        words.add(new Word("grandmother ", "ama"));
-        words.add(new Word("grandfather", "paapa"));
+        words.add(new Word(R.drawable.family_father,"father", "әpә"));
+        words.add(new Word(R.drawable.family_mother,"mother", "әṭa"));
+        words.add(new Word(R.drawable.family_son,"son", "angsi"));
+        words.add(new Word(R.drawable.family_daughter,"daughter", "tune"));
+        words.add(new Word(R.drawable.family_older_brother,"older brother", "taachi"));
+        words.add(new Word(R.drawable.family_younger_brother,"younger brother", "chalitti"));
+        words.add(new Word(R.drawable.family_older_sister,"older sister", "teṭe"));
+        words.add(new Word(R.drawable.family_younger_sister,"younger sister", "kolliti"));
+        words.add(new Word(R.drawable.family_grandmother,"grandmother ", "ama"));
+        words.add(new Word(R.drawable.family_grandfather,"grandfather", "paapa"));
 
         // Create an {@link WordAdapter}, whose data source is a list of {@link Word}s. The
         // adapter knows how to create list items for each item in the list.
@@ -38,8 +38,8 @@ public class FamilyActivity extends AppCompatActivity {
         // word_list.xml layout file.
         ListView listView = (ListView) findViewById(R.id.list);
 
-        // Make the {@link ListView} use the {@link WordAdapter} we created above, so that the
-        // {@link ListView} will display list items for each {@link Word} in the list.
+     // Make the {@link ListView} use the {@link WordAdapter} we created above, so that the
+     // {@link ListView} will display list items for each {@link Word} in the list.
         listView.setAdapter(adapter);
     }
 }

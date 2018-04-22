@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -55,6 +56,15 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
         // Get the {@link Word} object located at this position in the list
         Word currentWord = getItem(position);
+
+        // Check if there is an image attachment for the current word
+        if (currentWord.getImageID() != 0)
+        {
+            // Find the ImageView in the list_item.xml layout containing our image
+            ImageView imageView = (ImageView) listViewItem.findViewById(R.id.image);
+            // Get the imageID from the current Word object and set this onto ImageView
+            imageView.setImageResource(currentWord.getImageID());
+        }
 
         // Find the TextView in the list_item.xml layout containing our default_text
         TextView defaultTextView = (TextView) listViewItem.findViewById(R.id.default_text_view);
