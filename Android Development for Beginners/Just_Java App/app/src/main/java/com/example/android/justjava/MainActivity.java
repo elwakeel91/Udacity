@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Display the default quantity
-         displayQuantity();
+        displayQuantity();
     }
 
     /**
