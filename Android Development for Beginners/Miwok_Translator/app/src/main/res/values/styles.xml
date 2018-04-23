@@ -13,7 +13,6 @@
      limitations under the License.
 -->
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/primary_color</item>
@@ -26,8 +25,26 @@
         <item name="android:layout_height">@dimen/list_item_height</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:padding">16dp</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/text_color</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+    </style>
+
+    <style name="ImageStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/image_background_color</item>
+    </style>
+
+    <style name="MiwokTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DefaultTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
     </style>
 </resources>

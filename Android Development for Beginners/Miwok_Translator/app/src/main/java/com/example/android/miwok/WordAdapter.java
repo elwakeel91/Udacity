@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
  * */
 public class WordAdapter extends ArrayAdapter<Word> {
 
+    private int mBackgroundColorID;
+
     /**
      * This is our own custom constructor (it doesn't mirror a superclass constructor).
      * The context is used to inflate the layout file, and the list is the data we want
@@ -26,12 +29,15 @@ public class WordAdapter extends ArrayAdapter<Word> {
      * @param context           The current context. Used to inflate the layout file.
      * @param words             A List of {@link Word} objects to display in a list
      */
-    public WordAdapter(@NonNull Activity context, ArrayList<Word> words) {
+    public WordAdapter(@NonNull Activity context, ArrayList<Word> words, int backgroundColorID) {
     /*  Here, we initialize the ArrayAdapter's internal storage for the context and the list.
         the second argument is used when the ArrayAdapter is populating a single TextView.
         Because this is a custom adapter for two TextViews, the adapter is not
         going to use this second argument, so it can be any value. Here, we used 0.*/
         super(context, 0, words);
+
+        // Initialise the background color resource ID number
+        mBackgroundColorID = backgroundColorID;
     }
 
     /**
@@ -57,14 +63,23 @@ public class WordAdapter extends ArrayAdapter<Word> {
         // Get the {@link Word} object located at this position in the list
         Word currentWord = getItem(position);
 
+        // Set the background color of the text linear layout view
+        LinearLayout textLinearLayout =
+                (LinearLayout) listViewItem.findViewById(R.id.text_linear_layout);
+        textLinearLayout.setBackgroundColor(mBackgroundColorID);
+
+        // Find the ImageView in the list_item.xml layout containing our image
+        ImageView imageView = (ImageView) listViewItem.findViewById(R.id.image);
         // Check if there is an image attachment for the current word
-        if (currentWord.getImageID() != 0)
-        {
-            // Find the ImageView in the list_item.xml layout containing our image
-            ImageView imageView = (ImageView) listViewItem.findViewById(R.id.image);
+        if (currentWord.hasImageID()) {
             // Get the imageID from the current Word object and set this onto ImageView
             imageView.setImageResource(currentWord.getImageID());
+            // Make sure the view is visible
+            imageView.setVisibility(View.VISIBLE);
         }
+        else
+            // Remove the ImageView
+            imageView.setVisibility(View.GONE);
 
         // Find the TextView in the list_item.xml layout containing our default_text
         TextView defaultTextView = (TextView) listViewItem.findViewById(R.id.default_text_view);

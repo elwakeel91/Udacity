@@ -18,9 +18,9 @@ public class ColorsActivity extends AppCompatActivity {
 
         // Create a list of words
         ArrayList<Word> words = new ArrayList<Word>();
-        words.add(new Word(R.drawable.color_red,"red", "weṭeṭṭi"));
-        words.add(new Word(R.drawable.color_mustard_yellow,"mustard yellow", "chiwiiṭә"));
-        words.add(new Word(R.drawable.color_dusty_yellow,"dusty yellow", "ṭopiisә"));
+        words.add(new Word(R.drawable.color_red,"red", "Weṭeṭṭi"));
+        words.add(new Word(R.drawable.color_mustard_yellow,"mustard yellow", "Chiwiiṭә"));
+        words.add(new Word(R.drawable.color_dusty_yellow,"dusty yellow", "Topiisә"));
         words.add(new Word(R.drawable.color_green,"green", "chokokki"));
         words.add(new Word(R.drawable.color_brown,"brown", "ṭakaakki"));
         words.add(new Word(R.drawable.color_gray,"gray", "ṭopoppi"));
@@ -29,7 +29,7 @@ public class ColorsActivity extends AppCompatActivity {
 
         // Create an {@link WordAdapter}, whose data source is a list of {@link Word}s. The
         // adapter knows how to create list items for each item in the list.
-        WordAdapter adapter = new WordAdapter(this, words);
+        WordAdapter adapter = new WordAdapter(this, words, getResources().getColor(R.color.category_colors));
 
         // Find the {@link ListView} object in the view hierarchy of the {@link Activity}.
         // There should be a {@link ListView} with the view ID called list, which is declared in the

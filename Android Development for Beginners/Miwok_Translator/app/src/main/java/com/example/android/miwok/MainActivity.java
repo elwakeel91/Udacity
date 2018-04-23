@@ -37,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Create a new intent to open the {@Link FamilyActivity)
-                Intent familyIntent = new Intent(MainActivity.this, FamilyActivity.class);
+                Intent familyIntent = new Intent(MainActivity.this,
+                                                 FamilyActivity.class);
                 // Start the new activity
                 startActivity(familyIntent);
             }
@@ -51,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Create a new intent to open the {@Link NumbersActivity)
-                Intent numbersIntent = new Intent(MainActivity.this, NumbersActivity.class);
+                Intent numbersIntent = new Intent(MainActivity.this,
+                                                  NumbersActivity.class);
                 // Start the new activity
                 startActivity(numbersIntent);
             }
