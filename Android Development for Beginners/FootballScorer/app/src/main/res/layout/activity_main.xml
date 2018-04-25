@@ -2,138 +2,155 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/score_board"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:context=".MainActivity">
+    android:layout_width="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
-    <!-- Team A -->
     <LinearLayout
-        android:id="@+id/layout_team_A"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        tools:context=".MainActivity">
+        android:id="@+id/score_board"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1">
 
-        <!-- Team Name -->
-        <EditText
-            android:id="@+id/team_name_team_A"
-            android:layout_width="wrap_content"
+        <!-- Team A -->
+        <LinearLayout
+            android:id="@+id/layout_team_A"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            tools:context=".MainActivity">
 
-            android:inputType="textCapCharacters"
-            android:fontFamily="sans-serif-medium"
-            android:hint="TEAM A"
-            android:textSize="14sp" />
+            <!-- Team Name -->
+            <EditText
+                android:id="@+id/team_name_team_A"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="8dp"
 
-        <!-- Score -->
-        <TextView
-            android:id="@+id/score_team_A"
-            android:layout_width="match_parent"
+                android:inputType="textCapCharacters"
+                android:fontFamily="sans-serif-medium"
+                android:hint="TEAM A"
+                android:textSize="14sp" />
+
+            <!-- Score -->
+            <TextView
+                android:id="@+id/score_team_A"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center_horizontal"
+
+                android:paddingBottom="24dp"
+                android:text="0"
+                android:textColor="#000000"
+                android:textSize="56sp" />
+
+            <!-- Name of the player who scored -->
+            <EditText
+                android:id="@+id/player_name_team_A"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+
+                android:inputType="textCapCharacters"
+                android:fontFamily="sans-serif-medium"
+                android:hint="NAME OF PLAYER"
+                android:textSize="16sp" />
+
+            <!-- Goal -->
+            <Button
+                android:id="@+id/goal_team_A"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+
+                android:onClick="goalA"
+                android:text="Goal!"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <!-- Mid Line -->
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="#757575"/>
+
+        <!-- Team B -->
+        <LinearLayout
+            android:id="@+id/layout_team_B"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center_horizontal"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            tools:context=".MainActivity">
 
-            android:paddingBottom="24dp"
-            android:text="0"
-            android:textColor="#000000"
-            android:textSize="56sp" />
+            <!-- Team Name -->
+            <EditText
+                android:id="@+id/team_name_team_B"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="8dp"
 
-        <!-- Name of the player who scored -->
-        <EditText
-            android:id="@+id/player_name_team_A"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+                android:inputType="textCapCharacters"
+                android:fontFamily="sans-serif-medium"
+                android:hint="TEAM B"
+                android:textSize="14sp" />
 
-            android:inputType="textCapCharacters"
-            android:fontFamily="sans-serif-medium"
-            android:hint="NAME OF PLAYER"
-            android:textSize="16sp" />
+            <!-- Score -->
+            <TextView
+                android:id="@+id/score_team_B"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center_horizontal"
 
-        <!-- Goal -->
-        <Button
-            android:id="@+id/goal_team_A"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
+                android:paddingBottom="24dp"
+                android:text="0"
+                android:textColor="#000000"
+                android:textSize="56sp" />
 
-            android:onClick="goalA"
-            android:text="Goal!"
-            android:textSize="16sp" />
+            <!-- Name of Player who scored -->
+            <EditText
+                android:id="@+id/player_name_team_B"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+
+                android:inputType="textCapCharacters"
+                android:fontFamily="sans-serif-medium"
+                android:hint="NAME OF PLAYER"
+                android:textSize="16sp" />
+
+            <!-- Goal -->
+            <Button
+                android:id="@+id/goal_team_B"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+
+                android:onClick="goalB"
+                android:text="Goal!"
+                android:textSize="16sp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <!-- Mid Line -->
-    <View
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="#757575"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset"
+        android:layout_gravity="center_horizontal"
+        android:onClick="reset"
+        />
 
-    <!-- Team B -->
-    <LinearLayout
-        android:id="@+id/layout_team_B"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        tools:context=".MainActivity">
-
-        <!-- Team Name -->
-        <EditText
-            android:id="@+id/team_name_team_B"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="8dp"
-
-            android:inputType="textCapCharacters"
-            android:fontFamily="sans-serif-medium"
-            android:hint="TEAM B"
-            android:textSize="14sp" />
-
-        <!-- Score -->
-        <TextView
-            android:id="@+id/score_team_B"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center_horizontal"
-
-            android:paddingBottom="24dp"
-            android:text="0"
-            android:textColor="#000000"
-            android:textSize="56sp" />
-
-        <!-- Name of Player who scored -->
-        <EditText
-            android:id="@+id/player_name_team_B"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-
-            android:inputType="textCapCharacters"
-            android:fontFamily="sans-serif-medium"
-            android:hint="NAME OF PLAYER"
-            android:textSize="16sp" />
-
-        <!-- Goal -->
-        <Button
-            android:id="@+id/goal_team_B"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-
-            android:onClick="goalB"
-            android:text="Goal!"
-            android:textSize="16sp" />
-
-    </LinearLayout>
 
 </LinearLayout>

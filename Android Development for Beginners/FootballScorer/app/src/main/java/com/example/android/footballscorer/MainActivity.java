@@ -68,6 +68,37 @@ public class MainActivity extends AppCompatActivity {
         addGoal(view, name);
     }
 
+    public void reset (View view){
+        EditText teamName = findViewById(R.id.team_name_team_A);
+        teamName.setText("");
+
+        scoreTeamA = 0;
+        TextView score = findViewById(R.id.score_team_A);
+        score.setText(String.valueOf(scoreTeamA));
+
+        LinearLayout teamLayout = findViewById(R.id.layout_team_A);
+        int goalIndex = teamLayout.indexOfChild(findViewById(R.id.goal_team_A));
+
+        for (int i = goalIndex + 1; i < teamLayout.getChildCount(); i++){
+            teamLayout.removeViewAt(i);
+        }
+
+        teamName = findViewById(R.id.team_name_team_B);
+        teamName.setText("");
+
+        scoreTeamB = 0;
+        score = findViewById(R.id.score_team_B);
+        score.setText(String.valueOf(scoreTeamB));
+
+        teamLayout = findViewById(R.id.layout_team_B);
+        goalIndex = teamLayout.indexOfChild(findViewById(R.id.goal_team_B));
+
+        for (int i = goalIndex + 1; i < teamLayout.getChildCount(); i++){
+            teamLayout.removeViewAt(i);
+        }
+
+    }
+
     private void addGoal(View view, String name)
     {
         // Set the parent as the Team Linear Layout
