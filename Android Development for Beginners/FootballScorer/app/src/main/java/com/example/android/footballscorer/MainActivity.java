@@ -10,16 +10,13 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int scoreTeamA;
-    private int scoreTeamB;
+    private int scoreTeamA = 0;                     // The score for Team A
+    private int scoreTeamB = 0;                     // The score for Team B
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        scoreTeamA = 0;
-        scoreTeamB = 0;
     }
 
     public void goalA (View view) {
@@ -79,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout teamLayout = findViewById(R.id.layout_team_A);
         int goalIndex = teamLayout.indexOfChild(findViewById(R.id.goal_team_A));
 
-        for (int i = goalIndex + 1; i < teamLayout.getChildCount(); i++){
-            teamLayout.removeViewAt(i);
+        while (teamLayout.getChildCount() > goalIndex + 1){
+            teamLayout.removeViewAt(goalIndex + 1);
         }
 
         teamName = findViewById(R.id.team_name_team_B);
@@ -93,10 +90,9 @@ public class MainActivity extends AppCompatActivity {
         teamLayout = findViewById(R.id.layout_team_B);
         goalIndex = teamLayout.indexOfChild(findViewById(R.id.goal_team_B));
 
-        for (int i = goalIndex + 1; i < teamLayout.getChildCount(); i++){
-            teamLayout.removeViewAt(i);
+        while (teamLayout.getChildCount() > goalIndex + 1){
+            teamLayout.removeViewAt(goalIndex + 1);
         }
-
     }
 
     private void addGoal(View view, String name)
