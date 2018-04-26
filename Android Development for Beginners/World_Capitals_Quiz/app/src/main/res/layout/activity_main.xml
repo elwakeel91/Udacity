@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <!-- Main Layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header Layout with Image and Header Text -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/world_capitals" />
+
+            <TextView
+                style="@style/HeaderTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="sans-serif=regular"
+                android:text="World Trivia" />
+
+        </RelativeLayout>
+
+        <!-- "Can you name all the capitals?" -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_horizontal"
+            android:padding="16dp"
+
+            android:text="Can you name all the capitals?"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+        <!-- Russia -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Russia Header Text -->
+            <TextView
+                style="@style/CountryTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="Russia" />
+
+            <!-- Russia First Row Choices -->
+            <RadioGroup
+                android:id="@+id/russia_first_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- First Choice -->
+                <RadioButton
+                    android:id="@+id/moscow"
+                    style="@style/CityTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Moscow" />
+
+                <!-- Second Choice -->
+                <RadioButton
+                    style="@style/CityTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Omsk" />
+
+            </RadioGroup>
+
+            <!-- Russia Second Row Choices -->
+            <RadioGroup
+                android:id="@+id/russia_second_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Third Choice -->
+                <RadioButton
+                    style="@style/CityTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Vladivostok" />
+
+                <!-- Fourth Choice -->
+                <RadioButton
+                    style="@style/CityTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="St. PetersBerg" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <!-- Indonesia -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Indonesia Header Text -->
+            <TextView
+                style="@style/CountryTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="Indonesia" />
+
+            <!-- Indonesia First Row Choices -->
+            <RadioGroup
+                android:id="@+id/indonesia_first_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- First Choice -->
+                <RadioButton
+                    style="@style/CityTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Kuala Lumpur" />
+
+                <!-- Second Choice -->
+                <RadioButton
+                    style="@style/CityTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Manila" />
+
+            </RadioGroup>
+
+            <!-- Indonesia Second Row Choices -->
+            <RadioGroup
+                android:id="@+id/indonesia_second_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Third Choice -->
+                <RadioButton
+                    android:id="@+id/jakarta"
+                    style="@style/CityTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Jakarta" />
+
+                <!-- Fourth Choice -->
+                <RadioButton
+                    style="@style/CityTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Semerang" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <!-- Canada -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Canada Header Text -->
+            <TextView
+                style="@style/CountryTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="Canada" />
+
+            <!-- Canada First Row Choices -->
+            <RadioGroup
+                android:id="@+id/canada_first_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- First Choice -->
+                <RadioButton
+                    style="@style/CityTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Toronto" />
+
+                <!-- Second Choice -->
+                <RadioButton
+                    style="@style/CityTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Montreal" />
+
+            </RadioGroup>
+
+            <!-- Canada Second Row Choices -->
+            <RadioGroup
+                android:id="@+id/canada_second_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Third Choice -->
+                <RadioButton
+                    style="@style/CityTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Vancouver" />
+
+                <!-- Fourth Choice -->
+                <RadioButton
+                    android:id="@+id/ottowa"
+                    style="@style/CityTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Ottowa" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <!-- Mexico -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Mexico Header Text -->
+            <TextView
+                style="@style/CountryTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="Mexico" />
+
+            <!-- Mexico First Row Choices -->
+            <RadioGroup
+                android:id="@+id/mexico_first_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- First Choice -->
+                <RadioButton
+                    style="@style/CityTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Acapulco" />
+
+                <!-- Second Choice -->
+                <RadioButton
+                    android:id="@+id/mexico_city"
+                    style="@style/CityTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Mexico City" />
+
+            </RadioGroup>
+
+            <!-- Mexico Second Row Choices -->
+            <RadioGroup
+                android:id="@+id/mexico_second_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Third Choice -->
+                <RadioButton
+                    style="@style/CityTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Monterry" />
+
+                <!-- Fourth Choice -->
+                <RadioButton
+                    style="@style/CityTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Guadalajara" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <!-- Submit Answers -->
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="16dp"
+
+            android:text="Submit Answers"/>
+
+    </LinearLayout>
+
+</ScrollView>
