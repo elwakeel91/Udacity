@@ -1,5 +1,6 @@
 package com.example.android.miwok;
 
+import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
@@ -17,15 +18,6 @@ public class FamilyActivity extends AppCompatActivity {
 
     // Handles playback of all the audio files
     MediaPlayer mMediaPlayer;
-
-    // Custom Listener to tell the media player what to do when the audio is finished
-    MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
-        @Override
-        public void onCompletion(MediaPlayer mediaPlayer) {
-            // Free up the MediaPlayer resources
-            releaseMediaPlayer();
-        }
-    };
 
     // Create an Audio Manager object
     AudioManager mAudioManager;
@@ -46,14 +38,14 @@ public class FamilyActivity extends AppCompatActivity {
 
                     // Else check if we have lost audio focus temporarily
                     else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
-                            focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK){
+                            focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
 
                         // Pause the audio
                         mMediaPlayer.pause();
                     }
 
                     // Else check if we have regained audio focus
-                    else if (focusChange == AudioManager.AUDIOFOCUS_GAIN){
+                    else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
 
                         // Make sure the audio starts from the beginning
                         mMediaPlayer.seekTo(0);
@@ -63,23 +55,35 @@ public class FamilyActivity extends AppCompatActivity {
                 }
             };
 
+    // Custom Listener to tell the media player what to do when the audio is finished
+    MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            // Free up the MediaPlayer resources
+            releaseMediaPlayer();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.words_list);
 
+        // Create and setup the {@link AudioManager} to request audio focus
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
         // Create a list of words
         final ArrayList<Word> words = new ArrayList<>();
-        words.add(new Word(R.drawable.family_father,"father", "әpә", R.raw.family_father));
-        words.add(new Word(R.drawable.family_mother,"mother", "әṭa", R.raw.family_mother));
-        words.add(new Word(R.drawable.family_son,"son", "angsi", R.raw.family_son));
-        words.add(new Word(R.drawable.family_daughter,"daughter", "tune", R.raw.family_daughter));
-        words.add(new Word(R.drawable.family_older_brother,"older brother", "taachi", R.raw.family_older_brother));
-        words.add(new Word(R.drawable.family_younger_brother,"younger brother", "chalitti", R.raw.family_younger_brother));
-        words.add(new Word(R.drawable.family_older_sister,"older sister", "teṭe", R.raw.family_older_sister));
-        words.add(new Word(R.drawable.family_younger_sister,"younger sister", "kolliti", R.raw.family_younger_sister));
-        words.add(new Word(R.drawable.family_grandmother,"grandmother ", "ama", R.raw.family_grandmother));
-        words.add(new Word(R.drawable.family_grandfather,"grandfather", "paapa", R.raw.family_grandfather));
+        words.add(new Word(R.drawable.family_father, "father", "әpә", R.raw.family_father));
+        words.add(new Word(R.drawable.family_mother, "mother", "әṭa", R.raw.family_mother));
+        words.add(new Word(R.drawable.family_son, "son", "angsi", R.raw.family_son));
+        words.add(new Word(R.drawable.family_daughter, "daughter", "tune", R.raw.family_daughter));
+        words.add(new Word(R.drawable.family_older_brother, "older brother", "taachi", R.raw.family_older_brother));
+        words.add(new Word(R.drawable.family_younger_brother, "younger brother", "chalitti", R.raw.family_younger_brother));
+        words.add(new Word(R.drawable.family_older_sister, "older sister", "teṭe", R.raw.family_older_sister));
+        words.add(new Word(R.drawable.family_younger_sister, "younger sister", "kolliti", R.raw.family_younger_sister));
+        words.add(new Word(R.drawable.family_grandmother, "grandmother ", "ama", R.raw.family_grandmother));
+        words.add(new Word(R.drawable.family_grandfather, "grandfather", "paapa", R.raw.family_grandfather));
 
         // Create an {@link WordAdapter}, whose data source is a list of {@link Word}s. The
         // adapter knows how to create list items for each item in the list.
@@ -140,7 +144,7 @@ public class FamilyActivity extends AppCompatActivity {
      * Clean up the media player by releasing its resources.
      */
     private void releaseMediaPlayer() {
-        
+
         // If the media player is not null, then it may be currently playing a sound.
         if (mMediaPlayer != null) {
             // Regardless of the current state of the media player, release its resources

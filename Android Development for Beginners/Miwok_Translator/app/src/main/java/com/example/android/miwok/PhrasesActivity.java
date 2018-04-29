@@ -1,5 +1,6 @@
 package com.example.android.miwok;
 
+import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
@@ -17,16 +18,6 @@ public class PhrasesActivity extends AppCompatActivity {
 
     // Handles playback of all the audio files
     MediaPlayer mMediaPlayer;
-
-    // Custom Listener to tell the media player what to do when the audio is finished
-    MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
-        @Override
-        public void onCompletion(MediaPlayer mediaPlayer) {
-            // Free up the MediaPlayer resources
-            releaseMediaPlayer();
-        }
-    };
-
     // Create an Audio Manager object
     AudioManager mAudioManager;
 
@@ -37,7 +28,7 @@ public class PhrasesActivity extends AppCompatActivity {
                 public void onAudioFocusChange(int focusChange) {
 
                     // Check if we have lost audio focus permanently
-                    if (focusChange == AudioManager.AUDIOFOCUS_LOSS){
+                    if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
 
                         // Stop the audio and release the media resources
                         releaseMediaPlayer();
@@ -52,7 +43,7 @@ public class PhrasesActivity extends AppCompatActivity {
                     }
 
                     // Check if we have regained audio focus
-                    if (focusChange == AudioManager.AUDIOFOCUS_GAIN){
+                    if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
 
                         // Reset the audio to start from the beginning
                         mMediaPlayer.seekTo(0);
@@ -63,10 +54,22 @@ public class PhrasesActivity extends AppCompatActivity {
                 }
             };
 
+    // Custom Listener to tell the media player what to do when the audio is finished
+    MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            // Free up the MediaPlayer resources
+            releaseMediaPlayer();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.words_list);
+
+        // Create and setup the {@link AudioManager} to request audio focus
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         // Create a list of words
         final ArrayList<Word> words = new ArrayList<Word>();
@@ -104,17 +107,17 @@ public class PhrasesActivity extends AppCompatActivity {
 
                 // Request audio focus for playback
                 int result = mAudioManager.requestAudioFocus(mAudioFocusChangeListener,
-                                                             // Use the music audio stream
-                                                             AudioManager.STREAM_MUSIC,
-                                                             // Request temporary audio focus
-                                                             AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+                        // Use the music audio stream
+                        AudioManager.STREAM_MUSIC,
+                        // Request temporary audio focus
+                        AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
 
                 // If the request has been granted
                 if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
 
                     // Initialise the MediaPlayer with the correct Miwok audio
                     mMediaPlayer = MediaPlayer.create(PhrasesActivity.this,
-                                                      words.get(i).getAudioID());
+                            words.get(i).getAudioID());
 
                     // Play the audio
                     mMediaPlayer.start();

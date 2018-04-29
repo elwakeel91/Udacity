@@ -1,5 +1,6 @@
 package com.example.android.miwok;
 
+import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
@@ -17,15 +18,6 @@ public class ColorsActivity extends AppCompatActivity {
 
     // Handles playback of all the audio files
     MediaPlayer mMediaPlayer;
-
-    // Custom Listener to tell the media player what to do when the audio is finished
-    MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
-        @Override
-        public void onCompletion(MediaPlayer mediaPlayer) {
-            // Free up the MediaPlayer resources
-            releaseMediaPlayer();
-        }
-    };
 
     // Create an Audio Manager object
     AudioManager mAudioManager;
@@ -46,14 +38,14 @@ public class ColorsActivity extends AppCompatActivity {
 
                     // Else check if we have lost audio focus temporarily
                     else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
-                            focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK){
+                            focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
 
                         // Pause the audio
                         mMediaPlayer.pause();
                     }
 
                     // Else check if we have regained audio focus
-                    else if (focusChange == AudioManager.AUDIOFOCUS_GAIN){
+                    else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
 
                         // Make sure the audio starts from the beginning
                         mMediaPlayer.seekTo(0);
@@ -63,21 +55,33 @@ public class ColorsActivity extends AppCompatActivity {
                 }
             };
 
+    // Custom Listener to tell the media player what to do when the audio is finished
+    MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            // Free up the MediaPlayer resources
+            releaseMediaPlayer();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.words_list);
 
+        // Create and setup the {@link AudioManager} to request audio focus
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
         // Create a list of words
         final ArrayList<Word> words = new ArrayList<Word>();
-        words.add(new Word(R.drawable.color_red,"red", "Weṭeṭṭi", R.raw.color_red));
-        words.add(new Word(R.drawable.color_mustard_yellow,"mustard yellow", "Chiwiiṭә", R.raw.color_mustard_yellow));
-        words.add(new Word(R.drawable.color_dusty_yellow,"dusty yellow", "Topiisә", R.raw.color_dusty_yellow));
-        words.add(new Word(R.drawable.color_green,"green", "chokokki", R.raw.color_green));
-        words.add(new Word(R.drawable.color_brown,"brown", "ṭakaakki", R.raw.color_brown));
-        words.add(new Word(R.drawable.color_gray,"gray", "ṭopoppi", R.raw.color_gray));
-        words.add(new Word(R.drawable.color_black,"black", "kululli", R.raw.color_black));
-        words.add(new Word(R.drawable.color_white,"white", "kelelli", R.raw.color_white));
+        words.add(new Word(R.drawable.color_red, "red", "Weṭeṭṭi", R.raw.color_red));
+        words.add(new Word(R.drawable.color_mustard_yellow, "mustard yellow", "Chiwiiṭә", R.raw.color_mustard_yellow));
+        words.add(new Word(R.drawable.color_dusty_yellow, "dusty yellow", "Topiisә", R.raw.color_dusty_yellow));
+        words.add(new Word(R.drawable.color_green, "green", "chokokki", R.raw.color_green));
+        words.add(new Word(R.drawable.color_brown, "brown", "ṭakaakki", R.raw.color_brown));
+        words.add(new Word(R.drawable.color_gray, "gray", "ṭopoppi", R.raw.color_gray));
+        words.add(new Word(R.drawable.color_black, "black", "kululli", R.raw.color_black));
+        words.add(new Word(R.drawable.color_white, "white", "kelelli", R.raw.color_white));
 
         // Create an {@link WordAdapter}, whose data source is a list of {@link Word}s. The
         // adapter knows how to create list items for each item in the list.
@@ -111,7 +115,7 @@ public class ColorsActivity extends AppCompatActivity {
 
                     // Initialise the MediaPlayer with the correct Miwok audio
                     mMediaPlayer = MediaPlayer.create(ColorsActivity.this,
-                                                      words.get(i).getAudioID());
+                            words.get(i).getAudioID());
 
                     // Play the audio file
                     mMediaPlayer.start();

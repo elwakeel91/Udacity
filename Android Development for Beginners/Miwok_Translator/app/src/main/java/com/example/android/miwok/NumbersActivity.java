@@ -1,5 +1,6 @@
 package com.example.android.miwok;
 
+import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.provider.MediaStore;
@@ -19,6 +20,42 @@ public class NumbersActivity extends AppCompatActivity {
     // Handles playback of all the audio files
     MediaPlayer mMediaPlayer;
 
+    // Create an Audio Manager object
+    AudioManager mAudioManager;
+
+    // Create an audio focus change listener
+    AudioManager.OnAudioFocusChangeListener mAudioFocusChangeListener =
+            new AudioManager.OnAudioFocusChangeListener() {
+
+                @Override
+                public void onAudioFocusChange(int focusChange) {
+
+                    // Check if we have lost audio focus permanently
+                    if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+
+                        // Stop the Audio and release the resources
+                        releaseMediaPlayer();
+                    }
+
+                    // Else check if we have lost audio focus temporarily
+                    else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
+                            focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+
+                        // Pause the audio
+                        mMediaPlayer.pause();
+                    }
+
+                    // Else check if we have regained audio focus
+                    else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+
+                        // Make sure the audio starts from the beginning
+                        mMediaPlayer.seekTo(0);
+                        // Start the audio
+                        mMediaPlayer.start();
+                    }
+                }
+            };
+
     // Custom Listener to tell the media player what to do when the audio is finished
     MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
@@ -28,59 +65,26 @@ public class NumbersActivity extends AppCompatActivity {
         }
     };
 
-    // Create an Audio Manager object
-    AudioManager mAudioManager;
-
-    // Create an audio focus change listener
-    AudioManager.OnAudioFocusChangeListener mAudioFocusChangeListener =
-        new AudioManager.OnAudioFocusChangeListener() {
-
-            @Override
-            public void onAudioFocusChange(int focusChange) {
-
-                // Check if we have lost audio focus permanently
-                if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
-
-                    // Stop the Audio and release the resources
-                    releaseMediaPlayer();
-                }
-
-                // Else check if we have lost audio focus temporarily
-                else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
-                            focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK){
-
-                    // Pause the audio
-                    mMediaPlayer.pause();
-                }
-
-                // Else check if we have regained audio focus
-                else if (focusChange == AudioManager.AUDIOFOCUS_GAIN){
-
-                    // Make sure the audio starts from the beginning
-                    mMediaPlayer.seekTo(0);
-                    // Start the audio
-                    mMediaPlayer.start();
-                }
-            }
-        };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.words_list);
 
+        // Create and setup the {@link AudioManager} to request audio focus
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
         // Create an ArrayList of {@link Word} objects to store the numbers
         final ArrayList<Word> words = new ArrayList<>();
-        words.add(new Word(R.drawable.number_one,"One", "Lutti", R.raw.number_one));
-        words.add(new Word(R.drawable.number_two,"Two", "Otiiko", R.raw.number_two));
-        words.add(new Word(R.drawable.number_three,"Three", "Tolooskosu", R.raw.number_three));
-        words.add(new Word(R.drawable.number_four,"Four", "Oyyisa", R.raw.number_four));
-        words.add(new Word(R.drawable.number_five,"Five", "Massokka", R.raw.number_five));
-        words.add(new Word(R.drawable.number_six,"Six", "Temmokka", R.raw.number_six));
-        words.add(new Word(R.drawable.number_seven,"Seven", "Kenekaku", R.raw.number_seven));
-        words.add(new Word(R.drawable.number_eight,"Eight", "Kawinta", R.raw.number_eight));
-        words.add(new Word(R.drawable.number_nine,"Nine", "Wo'e", R.raw.number_nine));
-        words.add(new Word(R.drawable.number_ten,"Ten", "Na'aacha", R.raw.number_ten));
+        words.add(new Word(R.drawable.number_one, "One", "Lutti", R.raw.number_one));
+        words.add(new Word(R.drawable.number_two, "Two", "Otiiko", R.raw.number_two));
+        words.add(new Word(R.drawable.number_three, "Three", "Tolooskosu", R.raw.number_three));
+        words.add(new Word(R.drawable.number_four, "Four", "Oyyisa", R.raw.number_four));
+        words.add(new Word(R.drawable.number_five, "Five", "Massokka", R.raw.number_five));
+        words.add(new Word(R.drawable.number_six, "Six", "Temmokka", R.raw.number_six));
+        words.add(new Word(R.drawable.number_seven, "Seven", "Kenekaku", R.raw.number_seven));
+        words.add(new Word(R.drawable.number_eight, "Eight", "Kawinta", R.raw.number_eight));
+        words.add(new Word(R.drawable.number_nine, "Nine", "Wo'e", R.raw.number_nine));
+        words.add(new Word(R.drawable.number_ten, "Ten", "Na'aacha", R.raw.number_ten));
 
         // Create an {@link WordAdapter}, whose data source is a list of {@link Word}s. The
         // adapter knows how to create list items for each item in the list.
@@ -106,16 +110,16 @@ public class NumbersActivity extends AppCompatActivity {
 
                 // Request audio focus for playback
                 int result = mAudioManager.requestAudioFocus(mAudioFocusChangeListener,
-                                                             // Use the music stream
-                                                             AudioManager.STREAM_MUSIC,
-                                                             // Request temporary focus
-                                                             AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+                        // Use the music stream
+                        AudioManager.STREAM_MUSIC,
+                        // Request temporary focus
+                        AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
 
                 if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
 
                     // Initialise the MediaPlayer with the correct Miwok audio
                     mMediaPlayer = MediaPlayer.create(NumbersActivity.this,
-                                                            words.get(i).getAudioID());
+                            words.get(i).getAudioID());
 
                     // Play the audio file
                     mMediaPlayer.start();
