@@ -1,5 +1,6 @@
 package com.example.android.miwok;
 
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +26,42 @@ public class PhrasesActivity extends AppCompatActivity {
             releaseMediaPlayer();
         }
     };
+
+    // Create an Audio Manager object
+    AudioManager mAudioManager;
+
+    // Create a custom audio focus change listener
+    AudioManager.OnAudioFocusChangeListener mAudioFocusChangeListener =
+            new AudioManager.OnAudioFocusChangeListener() {
+                @Override
+                public void onAudioFocusChange(int focusChange) {
+
+                    // Check if we have lost audio focus permanently
+                    if (focusChange == AudioManager.AUDIOFOCUS_LOSS){
+
+                        // Stop the audio and release the media resources
+                        releaseMediaPlayer();
+                    }
+
+                    // Check if we have lost audio focus temporarily
+                    if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
+                            focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+
+                        // Pause the audio file
+                        mMediaPlayer.pause();
+                    }
+
+                    // Check if we have regained audio focus
+                    if (focusChange == AudioManager.AUDIOFOCUS_GAIN){
+
+                        // Reset the audio to start from the beginning
+                        mMediaPlayer.seekTo(0);
+
+                        // Play the audio once more
+                        mMediaPlayer.start();
+                    }
+                }
+            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,22 +102,38 @@ public class PhrasesActivity extends AppCompatActivity {
                 // Ensure that the media resources have been freed up first
                 releaseMediaPlayer();
 
-                // Initialise the MediaPlayer with the correct Miwok audio
-                mMediaPlayer = MediaPlayer.create(PhrasesActivity.this, words.get(i).getAudioID());
+                // Request audio focus for playback
+                int result = mAudioManager.requestAudioFocus(mAudioFocusChangeListener,
+                                                             // Use the music audio stream
+                                                             AudioManager.STREAM_MUSIC,
+                                                             // Request temporary audio focus
+                                                             AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
 
-                // Play the audio
-                mMediaPlayer.start();
+                // If the request has been granted
+                if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
 
-                // Setup our custom OnCompletionListener onto the media player
-                // so that we can free up some resources
-                mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                    // Initialise the MediaPlayer with the correct Miwok audio
+                    mMediaPlayer = MediaPlayer.create(PhrasesActivity.this,
+                                                      words.get(i).getAudioID());
+
+                    // Play the audio
+                    mMediaPlayer.start();
+
+                    // Setup our custom OnCompletionListener onto the media player
+                    // so that we can free up some resources
+                    mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                }
             }
         });
     }
 
     @Override
     protected void onStop() {
+
+        // Call the super class onStop method
         super.onStop();
+
+        // Release the media player resources
         releaseMediaPlayer();
     }
 
@@ -98,6 +151,9 @@ public class PhrasesActivity extends AppCompatActivity {
             // setting the media player to null is an easy way to tell that the media player
             // is not configured to play an audio file at the moment.
             mMediaPlayer = null;
+
+            // Abandon audio focus back to the system
+            mAudioManager.abandonAudioFocus(mAudioFocusChangeListener);
         }
     }
 }
