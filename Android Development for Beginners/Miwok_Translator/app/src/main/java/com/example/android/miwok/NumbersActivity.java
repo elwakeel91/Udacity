@@ -3,41 +3,45 @@ package com.example.android.miwok;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.provider.MediaStore;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-/**
- * {@link NumbersActivity} is the activity for the Numbers category
- */
 public class NumbersActivity extends AppCompatActivity {
 
-    // Handles playback of all the audio files
+    // Handles playback of all the audio files //
     MediaPlayer mMediaPlayer;
 
-    // Create an Audio Manager object
+    // Handles Audio Focus //
     AudioManager mAudioManager;
 
-    // Create an audio focus change listener
+    /**
+     * A custom Audio Manager audio focus change listener
+     */
     AudioManager.OnAudioFocusChangeListener mAudioFocusChangeListener =
             new AudioManager.OnAudioFocusChangeListener() {
 
                 @Override
                 public void onAudioFocusChange(int focusChange) {
 
-                    // Check if we have lost audio focus permanently
+                    ///////////////////////////////////////////////////
+                    // Check if we have lost audio focus permanently //
+                    ///////////////////////////////////////////////////
                     if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
 
                         // Stop the Audio and release the resources
                         releaseMediaPlayer();
                     }
 
-                    // Else check if we have lost audio focus temporarily
+                    ////////////////////////////////////////////////////////
+                    // Else check if we have lost audio focus temporarily //
+                    ////////////////////////////////////////////////////////
                     else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
                             focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
 
@@ -45,7 +49,9 @@ public class NumbersActivity extends AppCompatActivity {
                         mMediaPlayer.pause();
                     }
 
-                    // Else check if we have regained audio focus
+                    ////////////////////////////////////////////////
+                    // Else check if we have regained audio focus //
+                    ////////////////////////////////////////////////
                     else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
 
                         // Make sure the audio starts from the beginning
@@ -56,7 +62,9 @@ public class NumbersActivity extends AppCompatActivity {
                 }
             };
 
-    // Custom Listener to tell the media player what to do when the audio is finished
+    /**
+     * A custom Media Player listener to handle when the audio is finished
+     */
     MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
@@ -65,10 +73,16 @@ public class NumbersActivity extends AppCompatActivity {
         }
     };
 
+    /**
+     * Handles the start of the activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.words_list);
+
+        // Add the 'Up Navigation' feature
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Create and setup the {@link AudioManager} to request audio focus
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
@@ -132,6 +146,23 @@ public class NumbersActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Handles the option selected in the Action Bar
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            // Respond the to 'Up/Home' button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Handles the end of the activity
+     */
     @Override
     protected void onStop() {
 
@@ -146,8 +177,10 @@ public class NumbersActivity extends AppCompatActivity {
      * Clean up the media player by releasing its resources.
      */
     private void releaseMediaPlayer() {
+
         // If the media player is not null, then it may be currently playing a sound.
         if (mMediaPlayer != null) {
+
             // Regardless of the current state of the media player, release its resources
             // because we no longer need it.
             mMediaPlayer.release();

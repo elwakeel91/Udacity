@@ -22,21 +22,62 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!-- Main Activity -->
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NumbersActivity"
-            android:label="@string/category_numbers"/>
-        <activity android:name=".PhrasesActivity"
-            android:label="@string/category_phrases"/>
-        <activity android:name=".FamilyActivity"
-            android:label="@string/category_family"/>
-        <activity android:name=".ColorsActivity"
-            android:label="@string/category_colors"></activity>
-    </application>
 
+        <!-- Numbers Category Activity -->
+        <activity android:name=".NumbersActivity"
+            android:label="@string/category_numbers"
+            android:parentActivityName=".MainActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+
+        </activity>
+
+        <!-- Family Category Activity -->
+        <activity android:name=".FamilyActivity"
+            android:label="@string/category_family"
+            android:parentActivityName=".MainActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+
+        </activity>
+
+        <!-- Colors Category Activity -->
+        <activity android:name=".ColorsActivity"
+            android:label="@string/category_colors"
+            android:parentActivityName=".MainActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+
+        </activity>
+
+        <!-- Phrases Category Activity -->
+        <activity android:name=".PhrasesActivity"
+            android:label="@string/category_phrases"
+            android:parentActivityName=".MainActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+
+        </activity>
+
+    </application>
 </manifest>

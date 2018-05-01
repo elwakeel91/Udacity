@@ -25,12 +25,36 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
 
+        ////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////// Numbers Category ///////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////
+
+        // Find the view that shows the Numbers category
+        View numbers = findViewById(R.id.numbers);
+
+        // Set a click listener onto that view
+        numbers.setOnClickListener(new View.OnClickListener() {
+            // This method is called when the view is clicked on.
+            @Override
+            public void onClick(View view) {
+                // Create a new intent to open the {@Link NumbersActivity)
+                Intent numbersIntent = new Intent(MainActivity.this,
+                        NumbersActivity.class);
+                // Start the new activity
+                startActivity(numbersIntent);
+            }
+        });
+
+        ////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////// Family Category ////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////
+
         // Find the view that shows the Family category
         View family = findViewById(R.id.family);
+
         // Set a click listener onto that view
         family.setOnClickListener(new View.OnClickListener() {
             // This method is called when the view is clicked on.
@@ -39,28 +63,19 @@ public class MainActivity extends AppCompatActivity {
                 // Create a new intent to open the {@Link FamilyActivity)
                 Intent familyIntent = new Intent(MainActivity.this,
                                                  FamilyActivity.class);
+
                 // Start the new activity
                 startActivity(familyIntent);
             }
         });
 
-        // Find the view that shows the Numbers category
-        View numbers = findViewById(R.id.numbers);
-        // Set a click listener onto that view
-        numbers.setOnClickListener(new View.OnClickListener() {
-            // This method is called when the view is clicked on.
-            @Override
-            public void onClick(View view) {
-                // Create a new intent to open the {@Link NumbersActivity)
-                Intent numbersIntent = new Intent(MainActivity.this,
-                                                  NumbersActivity.class);
-                // Start the new activity
-                startActivity(numbersIntent);
-            }
-        });
+        ////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////// Colors Category ////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////
 
         // Find the view that shows the Colors category
         View colors = findViewById(R.id.colors);
+
         // Set a click listener onto that view
         colors.setOnClickListener(new View.OnClickListener() {
             // This method is called when the view is clicked on.
@@ -73,8 +88,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////// Phrases Category ///////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////
+
         // Find the view that shows the Phrases category
         View phrases = findViewById(R.id.phrases);
+
         // Set a click listener onto that view
         phrases.setOnClickListener(new View.OnClickListener() {
             // This method is called when the view is clicked on.
