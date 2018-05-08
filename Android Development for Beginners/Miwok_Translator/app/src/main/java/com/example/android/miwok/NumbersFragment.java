@@ -67,11 +67,12 @@ public class NumbersFragment extends Fragment {
         }
     };
 
-
+    /**
+     * Constructor
+     */
     public NumbersFragment() {
         // Required empty public constructor
     }
-
 
     /**
      * Creates the View that contains the fragment
